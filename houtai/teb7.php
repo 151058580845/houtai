@@ -1,57 +1,130 @@
+<?php
+include_once("../functions/database.php"); 
+					if(isset($_POST['name'])&&strlen(trim($_POST['name']))>0){
+						$name = $_POST['name'];
+						$user_id = 0;
+						if(isset($_POST['danhao'])&&strlen(trim($_POST['danhao']))>0){
+							$danhao = $_POST['danhao'];
+									getConnection(); 
+									
+										$sql = "SELECT * from tb_user where name = '$name'";
+										$select=mysqli_query($databaseConnection,$sql);
+											while($row=mysqli_fetch_array($select,MYSQLI_ASSOC)){
+												$user_id = $row['id'];
+												$sql2 = "UPDATE `tb_weixiu` SET `jieguo`= '维修中',`weixiuren`= '$name' WHERE danhao = '$danhao'";
+												$select2=mysqli_query($databaseConnection,$sql2);
+												if($select2){
+												}else{
+													echo "修改失败";
+												}
+										}
+									closeConnection();
+						}
+						}
+						
+					?>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/bootstrap.css" />
-		<script src="js/bootstrap.js"></script>
-		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-3.2.1.min.js"></script>
+			
+		
+		<script src="js/select2.full.min.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.css"/ >
+			
+		<link rel="stylesheet" href="css/select2.min.css"/>
+			<!-- <script src="js/jquery.min.js"></script> -->
+			<script src="js/bootstrap.js"></script>
 		<title></title>
+	<style>
+			.bgImg {
+						  height: 100%;
+						  width: 100%;
+						  background: url(img/background4.jpg) no-repeat;
+						/*  background-size: cover;
+						  position: absolute;
+						  overflow: hidden; */
+						}
+		</style>
+		<script>
+			function display1(id){
+							$('#danhao').val(id);
+
+						}
+		</script>
 	</head>
-	<body>
+	<body class="bgImg">
 		<div style="margin: 100px;">
 			<h1>维修进度</h1>
 			<table class="table table-bordered">
 				<tr style="text-align: center;">
-				  <td class="active">用户</td>
-				  <td class="success">投诉类型</td>
-				  <td class="warning">投诉内容</td>
-				  <td class="danger">反馈建议</td>
+				  <td class="active">物件</td>
+				  <td class="success">联系电话</td>
+				  <td class="warning">结果</td>
 				  <td class="info">操作</td>
 				</tr>
 				<?php
-					include_once("../functions/database.php");
 					$data = date("Y-m-d");
 					getConnection(); 
-					$sql = "SELECT * FROM `tb_user_tousu`";
+					$sql = "SELECT * FROM `tb_weixiu`";
 					//判断用户名和密码是否输入正确
 					$select=mysqli_query($databaseConnection,$sql);
 						while($row=mysqli_fetch_array($select,MYSQLI_ASSOC)){
-							$leibie = "";
-							switch($row['leibie']){
-								case 0:
-									$leibie = "111";
-									break;
-								case 1:
-									$leibie = "222";
-									break;
-								case 2:
-									$leibie = "333";
-									break;
+							if($row['jieguo']=="已完成"){
 								
+							}else{
+								echo '<tr style="text-align: center;">
+								  <td class="active">'.$row['name'].'</td>
+								  <td class="success">'.$row['phone'].'</td>
+								  <td class="warning">'.$row['jieguo'].'</td>
+								  <td class="info"><input class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" type="button" value="修改" style=" margin-left: 20px;" onclick="display1('.$row['danhao'].')"/></td>
+								</tr>';
 							}
 							
-							
-							echo '<tr style="text-align: center;">
-								  <td class="active">'.$row['name'].'</td>
-								  <td class="success">'.$leibie.'</td>
-								  <td class="warning">'.$row['message'].'</td>
-								  <td class="danger"> <input type="text"/></td>
-								  <td class="info"> <input type="submit" value = "完成"/></td>
-								</tr>';
 						}
 					closeConnection();
 				?>
 			</table>
+			
+			<form action="#" method="post">
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel" style="text-align: center;margin: 0 auto;">指派师傅维修</h4>
+							</div>
+							<div class="modal-body">
+								<div>
+									<input style="display: none;" type="text" class="form-control" placeholder="用户名称" id="danhao" name="danhao">
+								</div>
+								<div style="margin: 0 auto; text-align: center;">
+									<select class="mySelect" style="width:300px; text-align: center; height: 50px; margin: 0 auto;" name = "name">
+													<?php
+														getConnection(); 
+														$sql = "SELECT *from tb_user";
+														//判断用户名和密码是否输入正确
+														$select=mysqli_query($databaseConnection,$sql);
+															while($row=mysqli_fetch_array($select,MYSQLI_ASSOC)){
+																echo '<option >'.$row['name'].'</option>';
+															}
+														closeConnection();
+													?>
+								</select>
+								</div>
+								
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button type="submit" class="btn btn-primary">确认指派</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal -->
+				</div>
+			</form>
 		</div>
 	</body>
 </html>

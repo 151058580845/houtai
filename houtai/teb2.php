@@ -5,9 +5,18 @@
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<script src="js/bootstrap.js"></script>
 		<script src="js/jquery.min.js"></script>
-		<title></title>
-	</head>
-	<body>
+		<style>
+				.bgImg {
+							  height: 100%;
+							  width: 100%;
+							  background: url(img/background4.jpg) no-repeat;
+							 /* background-size: cover;
+							  position: absolute;
+							  overflow: hidden; */
+							}
+			</style>
+		</head>
+		<body class="bgImg">
 		<div style="margin: 100px;">
 			<h1>未缴费用户</h1>
 			<table class="table table-bordered">

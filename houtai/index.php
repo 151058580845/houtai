@@ -40,16 +40,16 @@
     <div class="body_top">
 		<div class="container">
 			<div class="row">
-			<div class="col-xs-8">
+			<div class="col-xs-10">
 			</div>
-			<div class="col-xs-4">
-				<a style="color: white;font-size: 16px;">退出</a>
-				<a style="color: white;font-size: 16px;">修改密码</a>
+			<div class="col-xs-2">
+				<a href="login.php" style="color: white;font-size: 16px;">退出</a>
+				<!-- <a href="teb12.php" style="color: white;font-size: 16px;">修改密码</a> -->
 			</div>
 		</div>
 		</div>
 	</div>
-	<div class="container-fluid">
+	<div class="container-fluid" style="height: 1000px;">
 		<div class="body_left">
 			<ul class="body_left_list">
 				<li>
@@ -95,25 +95,25 @@
 							<ul>
 								<li>
 									<label>
-										<span>转让登记</span>
+										<span>入住登记</span>
 										<i class="iconfont iconyoujiantou"></i>
-										<a href="javascript:;"></a>
+										<a href="teb3.php" target="iframe_a"></a>
 									</label>
 								</li>
 								<li>
 									<label>
-										<span>入住登记</span>
+										<span>转让登记</span>
 										<i class="iconfont iconyoujiantou"></i>
-										<a href="javascript:;"></a>
+										<a href="teb4.php" target="iframe_a"></a>
 									</label>
 								</li>
-								<li>
+								<!-- <li>
 									<label>
 										<span>出租登记</span>
 										<i class="iconfont iconyoujiantou"></i>
-										<a href="javascript:;"></a>
+										<a href="teb5.php" target="iframe_a"></a>
 									</label>
-								</li>
+								</li> -->
 							</ul>
 						</li>
 						<li>
@@ -164,20 +164,20 @@
 								<a href="teb9.php" target="iframe_a"></a>
 							</label>
 						</li>
-						<li>
+						<!-- <li>
 							<label>
 								<i class="iconfont iconYYGK"></i>
 								<span>信息录入</span>
 								<i class="iconfont iconyoujiantou"></i>
-								<a href="javascript:;"></a>
+								<a href="teb10.php" target="iframe_a"></a>
 							</label>
-						</li>
+						</li> -->
 						<li>
 							<label>
 								<i class="iconfont iconYYGK"></i>
 								<span>信息修改</span>
 								<i class="iconfont iconyoujiantou"></i>
-								<a href="javascript:;"></a>
+								<a href="teb11.php" target="iframe_a"></a>
 							</label>
 						</li>
 					</ul>
@@ -194,7 +194,7 @@
 								<i class="iconfont iconYYGK"></i>
 								<span>修改密码</span>
 								<i class="iconfont iconyoujiantou"></i>
-								<a href="javascript:;"></a>
+								<a href="teb12.php" target="iframe_a"></a>
 							</label>
 						</li>
 						<li>
@@ -211,7 +211,6 @@
 		</div>
 		<div class="body_right">
 			<iframe src="teb1.php" name="iframe_a" style="overflow:visible;" scrolling="no" frameborder="no"<!-- width="100%" height="100%;" --> onload="changeFragemWeight()">
-				<div>你盛开的积分快结束了宽度盛开的积分舒服的水电费圣诞节覅</div>
 			</iframe>
 		</div>
 	</div>
